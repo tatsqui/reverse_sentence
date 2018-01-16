@@ -4,29 +4,26 @@ require_relative '../lib/reverse_sentence'
 
 describe "reverse sentence" do
   describe "basic tests" do
-    describe "test 1" do
-      it "reverse a sentence with two words" do
-        test_string = "hello, world"
+    it "reverse a sentence with two words" do
+      test_string = "hello, world"
 
-        reverse_sentence(test_string)
+      reverse_sentence(test_string)
 
-        test_string.must_equal "world hello,"
-      end
+      test_string.must_equal "world hello,"
     end
 
-    describe "test 2" do
-      it "reverse a sentence with three words" do
-        test_string = "Yoda is awesome!"
+    it "reverse a sentence with three words" do
+      test_string = "Yoda is awesome!"
 
-        reverse_sentence(test_string)
+      reverse_sentence(test_string)
 
-        test_string.must_equal "awesome! is Yoda"
-      end
+      test_string.must_equal "awesome! is Yoda"
     end
   end
 
-  # if it's a string parameter, check for empty
-  describe "empty string input test" do
+  # check for edge cases
+  describe "edge cases" do
+    # if it's a string parameter, check for empty
     it "reverse an empty sentence" do
       test_string = ""
 
@@ -34,59 +31,46 @@ describe "reverse sentence" do
 
       test_string.must_be_empty
     end
-  end
 
-  # if the parameter is an object, check for nil
-  describe "nil object input test" do
-    it "nil object passed to reverse" do
+    # if the parameter is an object, check for nil
+    it "nil object passed to sentence reverse" do
       test_string = nil
 
       reverse_sentence(test_string)
 
       test_string.must_be_nil
     end
-  end
 
-  # check for edge cases
-  describe "edge cases" do
-    describe "edge case 1" do
-      it "reverse a sentence with one word" do
-        test_string = "world"
+    it "reverse a sentence with one word" do
+      test_string = "world"
 
-        reverse_sentence(test_string)
+      reverse_sentence(test_string)
 
-        test_string.must_equal "world"
-      end
+      test_string.must_equal "world"
     end
 
-    describe "edge case 2" do
-      it "reverse a sentence with multiple words" do
-        test_string = "I'm a better engineer today than I was yesterday."
+    it "reverse a sentence with multiple words" do
+      test_string = "I'm a better engineer today than I was yesterday."
 
-        reverse_sentence(test_string)
+      reverse_sentence(test_string)
 
-        test_string.must_equal "yesterday. was I than today engineer better a I'm"
-      end
+      test_string.must_equal "yesterday. was I than today engineer better a I'm"
     end
 
-    describe "edge case 3" do
-      it "reverse a sentence with multiple spaces between words" do
-        test_string = "How  do  you   like     them      apples?"
+    it "reverse a sentence with multiple spaces between words" do
+      test_string = "How  do  you   like     them      apples?"
 
-        reverse_sentence(test_string)
+      reverse_sentence(test_string)
 
-        test_string.must_equal "apples?      them     like   you  do  How"
-      end
+      test_string.must_equal "apples?      them     like   you  do  How"
     end
 
-    describe "edge case 4" do
-      it "reverse a sentence with preceeding and trailing white spaces" do
-        test_string = "  I can do this!     "
+    it "reverse a sentence with preceeding and trailing white spaces" do
+      test_string = "  I can do this!     "
 
-        reverse_sentence(test_string)
+      reverse_sentence(test_string)
 
-        test_string.must_equal "     this! do can I  "
-      end
+      test_string.must_equal "     this! do can I  "
     end
   end
 end
