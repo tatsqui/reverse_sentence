@@ -1,44 +1,56 @@
+require "pry"
 # A method to reverse the words in a sentence, in place.
 # Time complexity: ?
 # Space complexity: ?
 def reverse_sentence(my_sentence)
-  # first check for edge cases, return my_sentence
-  if my_sentence[0] == "" || my_sentence == nil
-    return my_sentence
-  end
-
-  length = my_sentence.length - 1
- 
-  #helper method to reverse characters
-  def reverse_it(string)
-    n = string.length - 1
-    reversed_word = ""
-    while n >= 0
-     reversed_word += string[n]
-     n-= 1
-    end
-    return reversed_word
-  end
-
-  str = ""
-  temp = ""
-  while length > 0
-    if my_sentence[length] == " " #preserve each whitespace
-      str += my_sentence[length]
-    elsif my_sentence.length < 2 # if it's less than 2 return the object
-      return my_sentence
-    else
-      while my_sentence[length] != " " && my_sentence[length] != nil
-        temp += my_sentence[length]
-        length -= 1
-      end 
-      length += 1
-      str += reverse_it(temp)
-      temp = ""
-    end
-      length -= 1
-  end
-  return str += my_sentence[0]
+ unless my_sentence == nil
+  temp = string_reverse(my_sentence)
+  temp_sentence = reverse_words(temp)
+  return temp_sentence
+ end
 end
 
-p reverse_sentence("  Taco cats UNITE  ")
+def string_reverse(my_string)
+  if my_string == nil
+    return false
+  end
+  length = my_string.length
+  i = 0
+  j = length - 1
+  while i < j
+    temp = my_string[i]
+    my_string[i] = my_string[j]
+    my_string[j] = temp
+    i += 1
+    j -= 1
+  end
+  return my_string
+end
+
+def reverse_words(my_words)
+  return my_words if my_words == nil || my_words.length == 0
+  
+  i = 0
+  l = my_words.length
+  start_char = 0
+  finish_char = 0
+  
+  while i < l 
+    while my_words[i] == " "
+      i += 1
+    end
+    start_char = i
+    while my_words[i] != " " && i < l
+      i += 1 
+    end
+    finish_char = (i -1) 
+    while start_char < finish_char
+        temp = my_words[start_char]
+        my_words[start_char] = my_words[finish_char]
+        my_words[finish_char] = temp
+        start_char += 1
+        finish_char -= 1
+    end
+  end
+  return my_words
+end 
