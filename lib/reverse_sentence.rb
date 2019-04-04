@@ -1,7 +1,7 @@
 require "pry"
 # A method to reverse the words in a sentence, in place.
-# Time complexity: ?
-# Space complexity: ?
+# Time complexity: On
+# Space complexity: O
 def reverse_sentence(my_sentence)
  unless my_sentence == nil
   temp = string_reverse(my_sentence)
